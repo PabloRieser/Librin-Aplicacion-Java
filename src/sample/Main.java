@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -29,13 +30,12 @@ public class Main extends Application {
         Button button2 = new Button("Crear una nueva factura");
 
         // Agregando los elementos a la vista
-        StackPane root = new StackPane();
-        root.getChildren().add(imageView);
-        root.getChildren().add(button2);
+        BorderPane border = new BorderPane();
+        border.setTop(imageView);
 
         // Configuracion de la ventana
         primaryStage.setTitle("Librin: Asistente para la venta de articulos de libreria");
-        primaryStage.setScene(new Scene(root, 600, 600));
+        primaryStage.setScene(new Scene(border, 800, 800));
         primaryStage.show();
     }
 
