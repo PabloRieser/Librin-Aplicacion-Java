@@ -28,7 +28,6 @@ public class Main extends Application {
         // Creacion de los botones
         Button button2 = new Button("Crear una nueva factura");
 
-
         // Agregando los elementos a la vista
         StackPane root = new StackPane();
         root.getChildren().add(imageView);
