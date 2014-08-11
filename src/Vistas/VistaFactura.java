@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 /**
  * Created by Escritorio on 25/07/2014.
  */
-public class Factura extends Application{
+public class VistaFactura extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -18,7 +18,7 @@ public class Factura extends Application{
 
         // Configuracion de la ventana
         primaryStage.setTitle("Factura A");
-        primaryStage.setScene(new Scene(root, 600, 600));
+        primaryStage.setScene(new Scene(root, 1200, 800));
         primaryStage.show();
 
     }

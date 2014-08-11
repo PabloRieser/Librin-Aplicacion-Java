@@ -1,16 +1,15 @@
 package sample;
 
-import Vistas.Factura;
+import Vistas.VistaFactura;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -19,42 +18,73 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(final Stage primaryStage) throws Exception {
 
-        // Cargo la imagen de la Oveja negra
-        Image imageOveja = new Image("file:C:\\Users\\Escritorio\\Downloads\\sheep_black.png");
+        /*********** Imagen de la oveja y titulo ***********/
+        Image imagenOveja = new Image("file:C:\\Users\\Escritorio\\Downloads\\sheep_black.png");
         ImageView imageViewOveja = new ImageView();
-        imageViewOveja.setImage(imageOveja);
-
-        Image imageArticulos = new Image("file:C:\\Users\\Escritorio\\Pictures\\Librin recursos\\articulos_portada.jpg");
-        ImageView imageViewArticulos = new ImageView();
-        imageViewArticulos.setImage(imageArticulos);
-
-        // Configuro el tamaño y la posicion de la imagen de la oveja
+        imageViewOveja.setImage(imagenOveja);
         imageViewOveja.setFitWidth(100);
         imageViewOveja.setPreserveRatio(true);
-        String cssBordering = "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);";
 
-        // Creo el titulo que acompaña a la imagen de la Oveja
-        Text titulo = new Text("Librin: La oveja negra de las aplicaciones de facturacion");
+        Text titulo = new Text("Librín: La ovejita negra");
         titulo.setFont(Font.font("Arial", FontWeight.BOLD, 20));
 
-        // Creo el panel
+        /*********** Botones **********/
+        Image imagenFacturacion = new Image("file:C:\\Users\\Escritorio\\Pictures\\Librin recursos\\Impresoras_Fiscales_01ve.jpeg");
+        Image imagenArticulos = new Image("file:C:\\Users\\Escritorio\\Pictures\\Librin recursos\\articulos.jpg");
+        Image imagenClientes = new Image("file:C:\\Users\\Escritorio\\Pictures\\Librin recursos\\Libreta-A5-papel-rayado-157396_38B.jpg");
+
+        Button botonDeFacturacion = new Button("Facturación", new ImageView(imagenFacturacion));
+        botonDeFacturacion.setStyle("-fx-font: 14px Verdana;");
+        botonDeFacturacion.setContentDisplay(ContentDisplay.BOTTOM);
+
+        Button botonDeArticulos = new Button("Artículos", new ImageView(imagenArticulos));
+        botonDeArticulos.setStyle("-fx-font: 14px Verdana;");
+        botonDeArticulos.setContentDisplay(ContentDisplay.BOTTOM);
+
+        Button botonDeClientes = new Button("Clientes", new ImageView(imagenClientes));
+        botonDeClientes.setStyle("-fx-font: 14px Verdana;");
+        botonDeClientes.setContentDisplay(ContentDisplay.BOTTOM);
+
+        /*********** Definicion de las acciones de los botones **********/
+        botonDeFacturacion.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                VistaFactura f = new VistaFactura();
+                try {
+                    f.start(primaryStage);
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
+
+        botonDeClientes.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+            }
+        });
+
+        botonDeArticulos.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+            }
+        });
+
+        /*********** Panel **********/
         GridPane grid = new GridPane();
         grid.setHgap(10);
         grid.setVgap(10);
+
         grid.setGridLinesVisible(false);
 
-        // Agrego la imagen de la Oveja y el banner de Articulos
-        grid.add(imageViewOveja,1,0);
-        grid.add(titulo,2,0);
-        grid.add(imageViewArticulos,2,1);
-        grid.setStyle(cssBordering);
+        grid.add(imageViewOveja, 0, 0);
+        grid.add(titulo, 1, 0);
+        grid.add(botonDeFacturacion,0,1);
+        grid.add(botonDeClientes,1,1);
+        grid.add(botonDeArticulos,2,1);
 
-
-        // Configuracion de la ventana
-        primaryStage.setTitle("Librin: Asistente para la venta de articulos de libreria");
-        primaryStage.setScene(new Scene(grid, 800, 800));
+        /*********** Ventana **********/
+        primaryStage.setTitle("Librín: Asistente para la venta de artículos de librería");
+        primaryStage.setScene(new Scene(grid, 1200, 800));
         primaryStage.show();
     }
 
